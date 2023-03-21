@@ -1,0 +1,15 @@
+.container {
+  height: 80vh;
+  width: 100vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: fixed;
+  top: 0vh;
+  left: 0vw;
+  margin-top: 10vh;
+}
+
+.animationbox {
+  margin: 10%;
+}

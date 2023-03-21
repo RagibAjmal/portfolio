@@ -1,18 +1,15 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export default function Footer() {
-    return <header>
-        <nav>
-            <ul>
-                <li><Link href="/about">
-                    Home</Link></li>
-                <li><Link href="/about">
-                    About</Link></li>
-                <li><Link href="/about">
-                    Projects</Link></li>
-                <li><Link href="/about">
-                    Contact</Link></li>
-            </ul>
-        </nav>
-    </header>
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <p>&copy; 2023 Ragib Ajmal. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

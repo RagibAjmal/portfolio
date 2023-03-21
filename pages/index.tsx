@@ -1,22 +1,24 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import AnimatedComponent from "@/components/animatedcomponent";
+import TypeWriter from "../components/typewriter";
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Ragib Ajmal</title>
-        <meta name="description" content="Ragib Ajmal Portfolio" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/R_icon.png" />
-      </Head>
-      <main className={styles.main}>
+      <AnimatedComponent>
+        <TypeWriter />
+      </AnimatedComponent>
+      <AnimatedComponent>
+        <TypeWriter />
+      </AnimatedComponent>
 
-      </main>
+      <div
+        style={{
+          position: "absolute",
+          height: "200vh",
+          width: "1vw",
+          marginTop: "10vh",
+        }}
+      ></div>
     </>
-  )
+  );
 }
