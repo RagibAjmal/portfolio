@@ -7,83 +7,14 @@ import { useSpring } from "react-spring";
 import { useState } from "react";
 import { useRef } from "react";
 import { useControls } from "leva";
-import { PerspectiveCamera } from "@react-three/fiber";
 import { useEffect, Suspense } from "react";
-import dynamic from "next/dynamic";
-import { useGLTF } from "@react-three/drei";
-
-function Model() {
-  const gltf = useGLTF("/setup.gltf");
-  return <primitive object={gltf.scene} />;
-}
+import Desk from "./desk";
+import Camera from "./camera";
+import { useFrame } from "@react-three/fiber";
 
 export default function Background({ pages, setPages }: any) {
-  const [position, setPosition] = useState([0, 0, 0]);
-  const { posX, posY, posZ, rotX, rotY, rotZ } = useControls({
-    posX: {
-      value: 0,
-      min: -100,
-      max: 100,
-      step: 1,
-    },
-    posY: {
-      value: 0,
-      min: -100,
-      max: 100,
-      step: 1,
-    },
-    posZ: {
-      value: 0,
-      min: -100,
-      max: 100,
-      step: 1,
-    },
-    rotX: {
-      value: 0,
-      min: -10,
-      max: 10,
-      step: 0.1,
-    },
-    rotY: {
-      value: 0,
-      min: -10,
-      max: 10,
-      step: 0.1,
-    },
-    rotZ: {
-      value: 0,
-      min: -10,
-      max: 10,
-      step: 0.1,
-    },
-  });
-  const MyMesh = () => {
-    const { camera } = useThree();
-    const ref = useRef();
-    return (
-      <mesh
-        ref={ref}
-        position={[posX, posY, posZ]}
-        rotation={[rotX, rotY, rotZ]}
-      >
-        <Model />
-      </mesh>
-    );
-  };
-  function SceneCamera() {
-    const { camera } = useThree();
-
-    useEffect(() => {
-      camera.fov = 75;
-      camera.near = 1;
-      camera.far = 1000;
-      camera.position.set([0, 0, 0]);
-      camera.rotateY(60);
-      camera.updateProjectionMatrix();
-    }, []);
-    return <PerspectiveCamera makeDefault></PerspectiveCamera>;
-  }
-  // change camera postion on scroll
+  const ref = useRef();
+  const [lerping, setLerping] = useState(false);
 
   return (
     // set the height and width of the canvas to 100% of the webpage
@@ -99,13 +30,11 @@ export default function Background({ pages, setPages }: any) {
       camera={{ position: [0, 0, 0] }}
     >
       <Suspense>
+        <Camera />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-
-        <MyMesh />
-        <OrbitControls />
         <Stars />
+        <OrbitControls />
       </Suspense>
     </Canvas>
   );
