@@ -1,6 +1,7 @@
 import { useTransition, animated } from "react-spring";
+import { cloneElement } from "react";
 
-export default function Page({ children }: { children: React.ReactNode }) {
+export default function Page({ children }: any) {
   const transitions = useTransition(children, {
     from: {
       opacity: 0,

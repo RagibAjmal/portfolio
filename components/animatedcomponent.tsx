@@ -4,19 +4,24 @@ import styles from "../styles/container.module.css";
 
 export default function AnimatedComponent({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  // const [ref, inView] = useInView({ threshold: 0.85 });
-  // const props = useSpring({
-  //   opacity: inView ? 1 : 0,
-  // });
+  start,
+  stop,
+  scrollPosition,
+  css,
+}: any) {
+  const visible =
+    (scrollPosition > start && scrollPosition < stop) ||
+    (start == 0 && scrollPosition < stop);
+  const props = useSpring({
+    opacity: visible ? 1 : 0,
+    transition: "all 0.3s",
+  });
 
   return (
-    // <animated.div ref={ref} style={props}>
-    <div className={styles.container}>
-      <div className={styles.animationbox}>{children}</div>
-    </div>
-    // </animated.div>
+    <animated.div style={props}>
+      <div className={styles.container} style={css}>
+        <div className={styles.animationbox}>{children}</div>
+      </div>
+    </animated.div>
   );
 }

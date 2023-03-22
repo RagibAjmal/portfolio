@@ -18,10 +18,21 @@ export default function Home() {
   }, []);
   return (
     <>
-      <AnimatedComponent>
+      {scrollPosition}
+      <AnimatedComponent
+        start={0}
+        stop={300}
+        scrollPosition={scrollPosition}
+        css={{ justifyContent: "left", leftt: "0" }}
+      >
         <TypeWriter />
       </AnimatedComponent>
-      <AnimatedComponent>
+      <AnimatedComponent
+        start={450}
+        stop={750}
+        scrollPosition={scrollPosition}
+        css={{ justifyContent: "right", right: "0" }}
+      >
         <TypeWriter />
       </AnimatedComponent>
 
